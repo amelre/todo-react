@@ -11,7 +11,7 @@ This is an **example** of a React application using components, containers, exte
 ```bash
 npm install 
 ```
-3.   Start nodeJS Backend [(download here)](https://pip.pypa.io/en/stable/). Make sure that our backend is running correctly in port 3000.
+3.   Start nodeJS Backend [(download here)](https://github.com/amelre/todo-API-nodeJS). Make sure that our backend is running correctly in port 3000.
 4.  Start the app with
 ```bash
 npm start
