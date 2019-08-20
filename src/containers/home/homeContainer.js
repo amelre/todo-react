@@ -15,9 +15,6 @@ class HomeContainer extends Component{
         doneTasks: []
     }
 
-    constructor(){
-        super();
-    }
 
   
     componentDidMount(){
@@ -27,7 +24,6 @@ class HomeContainer extends Component{
     listAllTasks = () => {
         Promise.all([listTask('TODO'), listTask('INPROCESS'), listTask('DONE')])
         .then(values => {
-            console.log(values);
             this.setState({
                 todoTasks : values[0],
                 inProcessTasks: values[1],
@@ -53,7 +49,6 @@ class HomeContainer extends Component{
 
     handleStart = (task) => {
         updateTask(task._id, {status: 'INPROCESS'}).then(json => {
-            // AQUI SE COMIENZA EL POMODORO
             this.listAllTasks();
         })
         .catch(error =>  console.log(error));
@@ -101,28 +96,38 @@ class HomeContainer extends Component{
                     <AddTask newTask={this.handleNewTask} />
                    
 
-                    <div className="container-tasks">
-                        <h2 className={"subtitle"}> Doing </h2>
-                        { inProcessTasks.map( (item, index) => 
-                            <TaskList task={item}  key={index}  doneEvent={this.handleDone} editEvent={this.handleEdit} /> )
-                        }
-                    </div>
+                    { inProcessTasks.length > 0 &&
+                        <div className="container-tasks">
+                            <h2 className={"subtitle"}> Doing </h2>
+                            { inProcessTasks.map( (item, index) => 
+                                <TaskList task={item}  key={index}  doneEvent={this.handleDone} editEvent={this.handleEdit} /> )
+                            }
+                        </div>
+                    }
 
+                    { todoTasks.length > 0 &&
+                        <div className="container-tasks">
+                            <h2 className={"subtitle"}> To do </h2>
+                            { todoTasks.map( (item, index) => 
+                                <TaskList task={item}  key={index}  startEvent={this.handleStart} editEvent={this.handleEdit} /> )
+                            }
+                        </div>
+                    }
 
-                    <div className="container-tasks">
-                        <h2 className={"subtitle"}> To do </h2>
-                        { todoTasks.map( (item, index) => 
-                            <TaskList task={item}  key={index}  startEvent={this.handleStart} editEvent={this.handleEdit} /> )
-                        }
-                    </div>
+                    { doneTasks.length > 0 &&
+                        <div className="container-tasks">
+                            <h2 className={"subtitle"}> Done </h2>
+                            { doneTasks.map((task, index) => 
+                                <div className={"card done card-"+ (task.type)} key={index}>{task.description}</div>
+                            )}
+                        </div>
+                    }
 
-                    <div className="container-tasks">
-                        <h2 className={"subtitle"}> Done </h2>
-                        { doneTasks.map((task, index) => 
-                            <div className={"card done card-"+ (task.type)} key={index}>{task.description}</div>
-                        )}
-                    </div>
-
+                    { inProcessTasks.length === 0 && todoTasks.length === 0 && doneTasks.length === 0 && 
+                        <div className="container-tasks">
+                            <h2 className={"subtitle"}> You don't have tasks yet</h2>
+                        </div>
+                    }
 
                 </div>
 

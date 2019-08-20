@@ -94,7 +94,7 @@ body {
 
 
 /*  Buttons */
-s
+
 
 .btn-flat{
   display: flex;
@@ -115,7 +115,7 @@ s
 }
 
 .btn-flat:hover{
-  background-color: #FD604E;
+  background-color: rgb(238, 115, 102);
 }
 
 .btn-danger{

@@ -1,6 +1,6 @@
 import React from 'react';
 import './TaskList.css';
-import { FiPlay, FiCheck, FiEdit2, FiClock } from 'react-icons/fi';
+import { FiPlay, FiCheck, FiEdit2 } from 'react-icons/fi';
 
 const TaskList = ({ doneEvent, editEvent, task, startEvent}) => {
 
@@ -16,12 +16,6 @@ const TaskList = ({ doneEvent, editEvent, task, startEvent}) => {
         startEvent(task)
     }
 
-    const pomodoros = () => {
-        if( task.pomodoros > 4 ){
-            return (<div className={"color-gray"}> <FiClock className="color-salmon"/> {task.pomodoros} </div> )
-        }
-        return  ( [...Array(task.pomodoros)].map( (item, index) => <FiClock className="color-salmon" key={index}/> ) )
-    }
 
     return (
         <div className={"card card-"+ (task.type)}>
@@ -34,7 +28,6 @@ const TaskList = ({ doneEvent, editEvent, task, startEvent}) => {
                 <label className={"text"}>{task.description}</label>
             </div>
 
-            <div> {pomodoros()} </div>
         </div>
     )
 }
