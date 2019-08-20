@@ -3,7 +3,7 @@
 This is an **example** of a React application using components, containers, external CSS (without any Framework), and a back-end in node JS.
 
 ![React Image]
-(https://github.com/amelre/todo-react/blob/master/public/react-img.png)
+(https://github.com/amelre/todo-react/blob/master/public/react-img.png | width=100)
 
 ## Getting Started
 
